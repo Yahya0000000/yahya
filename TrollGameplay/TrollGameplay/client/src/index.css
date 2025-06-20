@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+
+  /* Dark theme colors for animation studio */
+  --dark-primary: hsl(0, 0%, 10%);
+  --dark-secondary: hsl(0, 0%, 17%);
+  --dark-tertiary: hsl(0, 0%, 24%);
+  --accent-blue: hsl(207, 100%, 40%);
+  --accent-green: hsl(122, 39%, 49%);
+  --accent-orange: hsl(36, 100%, 50%);
+  --text-primary: hsl(0, 0%, 100%);
+  --text-secondary: hsl(0, 0%, 80%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Noto Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+  }
+
+  [dir="rtl"] {
+    direction: rtl;
+  }
+}
+
+@layer components {
+  .panel-border {
+    border: 1px solid var(--dark-tertiary);
+  }
+
+  .timeline-track {
+    background: linear-gradient(90deg, var(--dark-secondary) 0%, var(--dark-tertiary) 100%);
+  }
+
+  .keyframe-marker {
+    background: var(--accent-blue);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .keyframe-marker:hover {
+    background: hsl(207, 100%, 70%);
+    transform: scale(1.2);
+  }
+
+  .resizer {
+    cursor: col-resize;
+    background: var(--dark-tertiary);
+  }
+
+  .resizer:hover {
+    background: var(--accent-blue);
+  }
+
+  .character-viewport {
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(0, 122, 204, 0.1) 0%, transparent 70%),
+      linear-gradient(45deg, var(--dark-primary) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--dark-primary) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--dark-primary) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--dark-primary) 75%);
+    background-size: 100% 100%, 20px 20px, 20px 20px, 20px 20px, 20px 20px;
+    background-position: 0 0, 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+
+  .tool-icon {
+    transition: all 0.2s;
+  }
+
+  .tool-icon:hover {
+    color: var(--accent-blue);
+    transform: scale(1.1);
+  }
+
+  .analysis-progress {
+    background: linear-gradient(90deg, var(--accent-green) var(--progress, 0%), var(--dark-secondary) var(--progress, 0%));
+    transition: all 0.3s ease;
+  }
+
+  .bone-joint {
+    background: var(--accent-orange);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  .part-highlight {
+    border: 2px solid var(--accent-green);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 15px rgba(76, 175, 80, 0.3); }
+    to { box-shadow: 0 0 25px rgba(76, 175, 80, 0.6); }
+  }
+
+  .property-slider {
+    appearance: none;
+    background: var(--dark-tertiary);
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  .property-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .property-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+
+  /* Animation Studio Dark Theme */
+  .animation-studio {
+    background: var(--dark-primary);
+    color: var(--text-primary);
+  }
+
+  .animation-studio .bg-dark-primary {
+    background: var(--dark-primary);
+  }
+
+  .animation-studio .bg-dark-secondary {
+    background: var(--dark-secondary);
+  }
+
+  .animation-studio .bg-dark-tertiary {
+    background: var(--dark-tertiary);
+  }
+
+  .animation-studio .text-accent-blue {
+    color: var(--accent-blue);
+  }
+
+  .animation-studio .text-accent-green {
+    color: var(--accent-green);
+  }
+
+  .animation-studio .text-accent-orange {
+    color: var(--accent-orange);
+  }
+
+  .animation-studio .text-text-primary {
+    color: var(--text-primary);
+  }
+
+  .animation-studio .text-text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .animation-studio .bg-accent-blue {
+    background: var(--accent-blue);
+  }
+
+  .animation-studio .bg-accent-green {
+    background: var(--accent-green);
+  }
+
+  .animation-studio .bg-accent-orange {
+    background: var(--accent-orange);
+  }
+
+  .animation-studio .hover\:bg-accent-blue:hover {
+    background: var(--accent-blue);
+  }
+
+  .animation-studio .hover\:bg-accent-green:hover {
+    background: var(--accent-green);
+  }
+
+  .animation-studio .hover\:text-accent-blue:hover {
+    color: var(--accent-blue);
+  }
+
+  .animation-studio .border-dark-tertiary {
+    border-color: var(--dark-tertiary);
+  }
+}
